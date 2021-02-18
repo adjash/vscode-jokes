@@ -9,7 +9,7 @@ const vscode = require('vscode');
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	const axios = require('axios');
+	const axios = require('axios').default;
 	const messageWindow = (str) => {
 		vscode.window.showInformationMessage(str);
 	}
@@ -22,8 +22,7 @@ function activate(context) {
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
 
-
-	let testMethod = vscode.commands.registerCommand('dogge.meme', () => {
+	let randomJoke = vscode.commands.registerCommand('dogge.meme', () => {
 		axios.get('https://official-joke-api.appspot.com/random_joke')
 		.then((res) => {
 			messageWindow(res.data.setup);
@@ -32,7 +31,7 @@ function activate(context) {
 	});
 
 	//re-inventing the wheel
-	const methods = [testMethod];
+	const methods = [randomJoke];
 	methods.forEach(method => {
 		console.log(method);
 		context.subscriptions.push(method);
