@@ -3,6 +3,7 @@
   "displayName": "dogge",
   "description": "just a lil dogge",
   "version": "0.0.1",
+  "icon": "icons/Laugh.png",
   "engines": {
     "vscode": "^1.53.0"
   },
@@ -10,7 +11,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:dogge.meme"
+    "onCommand:dogge.meme",
+    "onCommand:dogge.quote"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -18,12 +20,18 @@
       {
         "command": "dogge.meme",
         "title": "meme"
+      }, 
+      {
+        "command": "dogge.quote",
+        "title": "quote"
       }
-    ], 
-    "keybindings": [{
-      "command": "dogge.meme",
-      "key": "ctrl+shift+j"
-    }]
+    ],
+    "keybindings": [
+      {
+        "command": "dogge.meme",
+        "key": "ctrl+shift+j"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",

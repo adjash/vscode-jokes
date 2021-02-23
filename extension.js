@@ -10,6 +10,7 @@ const vscode = require('vscode');
  */
 function activate(context) {
 	const axios = require('axios').default;
+	//Less Syntax information message
 	const messageWindow = (str) => {
 		vscode.window.showInformationMessage(str);
 	}
@@ -30,8 +31,16 @@ function activate(context) {
 		})
 	});
 
+	let randomQuote = vscode.commands.registerCommand('dogge.quote', () => {
+		axios.get('https://api.quotable.io/random')
+		.then((res) => {
+			console.log(` + ${res.data.content}`);
+			messageWindow(`_${res.data.content}_`)
+		})
+	})
+
 	//re-inventing the wheel
-	const methods = [randomJoke];
+	const methods = [randomJoke, randomQuote];
 	methods.forEach(method => {
 		console.log(method);
 		context.subscriptions.push(method);
